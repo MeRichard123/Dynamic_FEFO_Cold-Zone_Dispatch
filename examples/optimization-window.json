@@ -1,0 +1,154 @@
+{
+  "seed": 42,
+  "duration_minutes": 60,
+  "tick_minutes": 1,
+  "ambient_c": 22,
+  "grid_kg_co2_per_kwh": 0.2,
+  "pickers": 1,
+  "picker_speed_m_s": 1.2,
+  "coordinate_scale_m": 0.001,
+  "dispatch_xy": [
+    66,
+    -29
+  ],
+  "pick_minutes": 2,
+  "zones": [
+    {
+      "id": "chilled",
+      "aisles": [
+        "A",
+        "B",
+        "C",
+        "D",
+        "E",
+        "F"
+      ],
+      "temperature_c": 2,
+      "setpoint_c": 2,
+      "ua_closed_kw_k": 0.08,
+      "ua_door_kw_k": 0.1,
+      "thermal_capacity_kwh_k": 0.5,
+      "max_cooling_kw": 100,
+      "cop": 2.5,
+      "min_setpoint_c": 2,
+      "max_setpoint_c": 3,
+      "setpoint_options_c": [
+        2,
+        3
+      ]
+    },
+    {
+      "id": "cool",
+      "aisles": [
+        "G",
+        "H",
+        "I",
+        "J",
+        "K",
+        "L"
+      ],
+      "temperature_c": 12,
+      "setpoint_c": 12,
+      "ua_closed_kw_k": 0.08,
+      "ua_door_kw_k": 1,
+      "thermal_capacity_kwh_k": 0.5,
+      "max_cooling_kw": 5,
+      "cop": 3,
+      "min_setpoint_c": 12,
+      "max_setpoint_c": 13,
+      "setpoint_options_c": [
+        12,
+        13
+      ]
+    },
+    {
+      "id": "temperate",
+      "aisles": [
+        "M",
+        "N",
+        "O",
+        "P",
+        "Q",
+        "R"
+      ],
+      "temperature_c": 15,
+      "setpoint_c": 15,
+      "ua_closed_kw_k": 0.08,
+      "ua_door_kw_k": 1,
+      "thermal_capacity_kwh_k": 0.5,
+      "max_cooling_kw": 5,
+      "cop": 3,
+      "min_setpoint_c": 15,
+      "max_setpoint_c": 16,
+      "setpoint_options_c": [
+        15,
+        16
+      ]
+    }
+  ],
+  "products": [
+    {
+      "sku": "strawberries",
+      "zone": "chilled",
+      "pallets": 6,
+      "pallet_kg": 100,
+      "life_hours": 8,
+      "reference_temp_c": 2,
+      "min_temp_c": 0,
+      "max_temp_c": 5,
+      "q10": 2
+    },
+    {
+      "sku": "bananas",
+      "zone": "cool",
+      "pallets": 4,
+      "pallet_kg": 100,
+      "life_hours": 48,
+      "reference_temp_c": 12,
+      "min_temp_c": 10,
+      "max_temp_c": 14,
+      "q10": 2
+    },
+    {
+      "sku": "tomatoes",
+      "zone": "temperate",
+      "pallets": 4,
+      "pallet_kg": 100,
+      "life_hours": 36,
+      "reference_temp_c": 15,
+      "min_temp_c": 10,
+      "max_temp_c": 18,
+      "q10": 2
+    }
+  ],
+  "waves": [
+    {
+      "at_minute": 1,
+      "sku": "strawberries",
+      "quantity_kg": 1
+    },
+    {
+      "at_minute": 12,
+      "sku": "strawberries",
+      "quantity_kg": 1
+    }
+  ],
+  "initial_pallets": [
+    {
+      "id": "FRESH",
+      "sku": "strawberries",
+      "zone": "chilled",
+      "slot": "A-14-11",
+      "quantity_kg": 1,
+      "remaining_life_hours": 10
+    },
+    {
+      "id": "URGENT",
+      "sku": "strawberries",
+      "zone": "chilled",
+      "slot": "A-14-12",
+      "quantity_kg": 1,
+      "remaining_life_hours": 0.15
+    }
+  ]
+}

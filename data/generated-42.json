@@ -1,0 +1,111 @@
+{
+  "description": "A cooling failure occurs in the cool zone disrupting the temperature control for 30 minutes starting at minute 60, causing a temperature rise of 3 degrees Celsius.",
+  "disruptions": [
+    {
+      "kind": "cooling_failure",
+      "zone": "cool",
+      "at_minute": 60,
+      "duration_minutes": 30,
+      "value": 0.7
+    }
+  ],
+  "generation": {
+    "provider": "ollama",
+    "model": "qwen2.5:7b",
+    "quantization": "Q4_K_M",
+    "endpoint": "http://localhost:11434",
+    "seed": 42,
+    "request": {
+      "model": "qwen2.5:7b",
+      "stream": false,
+      "format": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "description",
+          "disruptions"
+        ],
+        "properties": {
+          "description": {
+            "type": "string"
+          },
+          "disruptions": {
+            "type": "array",
+            "maxItems": 8,
+            "items": {
+              "type": "object",
+              "additionalProperties": false,
+              "required": [
+                "kind",
+                "zone",
+                "at_minute",
+                "duration_minutes",
+                "value"
+              ],
+              "properties": {
+                "kind": {
+                  "type": "string",
+                  "enum": [
+                    "sensor_bias",
+                    "cooling_failure",
+                    "door_stuck"
+                  ]
+                },
+                "zone": {
+                  "type": "string",
+                  "enum": [
+                    "chilled",
+                    "cool",
+                    "temperate"
+                  ]
+                },
+                "at_minute": {
+                  "type": "number",
+                  "minimum": 0
+                },
+                "duration_minutes": {
+                  "type": "number",
+                  "exclusiveMinimum": 0
+                },
+                "value": {
+                  "type": "number"
+                }
+              }
+            }
+          }
+        }
+      },
+      "messages": [
+        {
+          "role": "system",
+          "content": "Generate one realistic cold-chain disruption scenario as JSON. Only emit description and disruptions. Generate at least one disruption. sensor_bias value is Celsius bias added to sensor reading, between -5 and +5. cooling_failure value is available cooling fraction between 0 and 1. door_stuck value must be 1. Use only existing zone IDs. Events must fit the horizon; same kind and zone events must not overlap. Do not change stock, temperatures, products, orders or physics parameters. Schema: {\"type\": \"object\", \"additionalProperties\": false, \"required\": [\"description\", \"disruptions\"], \"properties\": {\"description\": {\"type\": \"string\"}, \"disruptions\": {\"type\": \"array\", \"maxItems\": 8, \"items\": {\"type\": \"object\", \"additionalProperties\": false, \"required\": [\"kind\", \"zone\", \"at_minute\", \"duration_minutes\", \"value\"], \"properties\": {\"kind\": {\"type\": \"string\", \"enum\": [\"sensor_bias\", \"cooling_failure\", \"door_stuck\"]}, \"zone\": {\"type\": \"string\", \"enum\": [\"chilled\", \"cool\", \"temperate\"]}, \"at_minute\": {\"type\": \"number\", \"minimum\": 0}, \"duration_minutes\": {\"type\": \"number\", \"exclusiveMinimum\": 0}, \"value\": {\"type\": \"number\"}}}}}}"
+        },
+        {
+          "role": "user",
+          "content": "Scenario seed 42. Warehouse context: {\"duration_minutes\": 480, \"zones\": [{\"id\": \"chilled\", \"aisles\": [\"A\", \"B\", \"C\", \"D\", \"E\", \"F\"], \"temperature_c\": 2, \"setpoint_c\": 2, \"ua_closed_kw_k\": 0.08, \"ua_door_kw_k\": 2, \"thermal_capacity_kwh_k\": 0.5, \"max_cooling_kw\": 8, \"cop\": 2.5, \"min_setpoint_c\": 2, \"max_setpoint_c\": 3, \"setpoint_options_c\": [2, 3]}, {\"id\": \"cool\", \"aisles\": [\"G\", \"H\", \"I\", \"J\", \"K\", \"L\"], \"temperature_c\": 12, \"setpoint_c\": 12, \"ua_closed_kw_k\": 0.08, \"ua_door_kw_k\": 1, \"thermal_capacity_kwh_k\": 0.5, \"max_cooling_kw\": 5, \"cop\": 3, \"min_setpoint_c\": 12, \"max_setpoint_c\": 13, \"setpoint_options_c\": [12, 13]}, {\"id\": \"temperate\", \"aisles\": [\"M\", \"N\", \"O\", \"P\", \"Q\", \"R\"], \"temperature_c\": 15, \"setpoint_c\": 15, \"ua_closed_kw_k\": 0.08, \"ua_door_kw_k\": 1, \"thermal_capacity_kwh_k\": 0.5, \"max_cooling_kw\": 5, \"cop\": 3, \"min_setpoint_c\": 15, \"max_setpoint_c\": 16, \"setpoint_options_c\": [15, 16]}], \"products\": [{\"sku\": \"strawberries\", \"zone\": \"chilled\", \"pallets\": 6, \"pallet_kg\": 100, \"life_hours\": 8, \"reference_temp_c\": 2, \"min_temp_c\": 0, \"max_temp_c\": 5, \"q10\": 2}, {\"sku\": \"bananas\", \"zone\": \"cool\", \"pallets\": 4, \"pallet_kg\": 100, \"life_hours\": 48, \"reference_temp_c\": 12, \"min_temp_c\": 10, \"max_temp_c\": 14, \"q10\": 2}, {\"sku\": \"tomatoes\", \"zone\": \"temperate\", \"pallets\": 4, \"pallet_kg\": 100, \"life_hours\": 36, \"reference_temp_c\": 15, \"min_temp_c\": 10, \"max_temp_c\": 18, \"q10\": 2}], \"waves\": [{\"at_minute\": 0.0, \"sku\": \"tomatoes\", \"quantity_kg\": 3.0, \"source_wave\": \"33168\"}, {\"at_minute\": 0.0, \"sku\": \"bananas\", \"quantity_kg\": 1.0, \"source_wave\": \"33169\"}, {\"at_minute\": 0.0, \"sku\": \"bananas\", \"quantity_kg\": 3.0, \"source_wave\": \"33170\"}]}"
+        }
+      ],
+      "options": {
+        "temperature": 0.7,
+        "seed": 42
+      }
+    },
+    "response": {
+      "model": "qwen2.5:7b",
+      "created_at": "2026-11-16T11:47:42.878235999Z",
+      "message": {
+        "role": "assistant",
+        "content": "{\n  \"description\": \"A cooling failure occurs in the cool zone disrupting the temperature control for 30 minutes starting at minute 60, causing a temperature rise of 3 degrees Celsius.\",\n  \"disruptions\": [\n    {\n      \"kind\": \"cooling_failure\",\n      \"zone\": \"cool\",\n      \"at_minute\": 60,\n      \"duration_minutes\": 30,\n      \"value\": 0.7\n    }\n  ]\n}"
+      },
+      "done": true,
+      "done_reason": "stop",
+      "total_duration": 5097910564,
+      "load_duration": 3104888947,
+      "prompt_eval_count": 1043,
+      "prompt_eval_cached_count": 0,
+      "prompt_eval_duration": 482002000,
+      "eval_count": 97,
+      "eval_duration": 1506989000
+    }
+  }
+}

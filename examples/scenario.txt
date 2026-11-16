@@ -1,0 +1,10 @@
+Zone A has slots A1, A2, A3, measured temperature 3.5 C, setpoint 1 C,
+and equipment setpoint limits 0 to 5 C. Zone B has slots B1 and B2,
+measured temperature and setpoint both 12 C, equipment limits 8 to 15 C.
+Pallet ST-OLD is in A1: 100 kg strawberries, 18 hours remaining life at
+reference 1 C, allowed range 0 to 5 C, Q10 2.
+Incoming pallet ST-NEW: 120 kg strawberries, 60 hours remaining at reference
+1 C, allowed range 0 to 5 C, Q10 2. It has no slot yet.
+Incoming pallet BAN-1: 80 kg bananas, 96 hours remaining at reference
+12 C, allowed range 10 to 14 C, Q10 2. It has no slot yet.
+Order: 150 kg strawberries, with at least 12 remaining hours.

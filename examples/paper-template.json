@@ -1,0 +1,335 @@
+{
+  "seed": 42,
+  "duration_minutes": 480,
+  "tick_minutes": 1,
+  "ambient_c": 22,
+  "grid_kg_co2_per_kwh": 0.2,
+  "pickers": 1,
+  "picker_speed_m_s": 1.2,
+  "coordinate_scale_m": 1,
+  "dispatch_xy": [
+    66,
+    -29
+  ],
+  "pick_minutes": 2,
+  "zones": [
+    {
+      "id": "chilled",
+      "aisles": [
+        "A",
+        "B",
+        "C",
+        "D",
+        "E",
+        "F"
+      ],
+      "temperature_c": 0,
+      "setpoint_c": 0,
+      "ua_closed_kw_k": 0.08,
+      "ua_door_kw_k": 2,
+      "thermal_capacity_kwh_k": 0.5,
+      "max_cooling_kw": 8,
+      "cop": 2.5,
+      "min_setpoint_c": 0,
+      "max_setpoint_c": 1,
+      "setpoint_options_c": [
+        0,
+        1
+      ]
+    },
+    {
+      "id": "cool",
+      "aisles": [
+        "G",
+        "H",
+        "I",
+        "J",
+        "K",
+        "L"
+      ],
+      "temperature_c": 2,
+      "setpoint_c": 2,
+      "ua_closed_kw_k": 0.08,
+      "ua_door_kw_k": 1,
+      "thermal_capacity_kwh_k": 0.5,
+      "max_cooling_kw": 5,
+      "cop": 3,
+      "min_setpoint_c": 2,
+      "max_setpoint_c": 3,
+      "setpoint_options_c": [
+        2,
+        3
+      ]
+    },
+    {
+      "id": "temperate",
+      "aisles": [
+        "M",
+        "N",
+        "O",
+        "P",
+        "Q",
+        "R"
+      ],
+      "temperature_c": 4,
+      "setpoint_c": 4,
+      "ua_closed_kw_k": 0.08,
+      "ua_door_kw_k": 1,
+      "thermal_capacity_kwh_k": 0.5,
+      "max_cooling_kw": 5,
+      "cop": 3,
+      "min_setpoint_c": 4,
+      "max_setpoint_c": 5,
+      "setpoint_options_c": [
+        4,
+        5
+      ]
+    }
+  ],
+  "products": [
+    {
+      "sku": "apples",
+      "zone": "chilled",
+      "pallets": 2,
+      "pallet_kg": 100,
+      "life_hours": 4354.376657824933,
+      "reference_temp_c": 4,
+      "min_temp_c": 0,
+      "max_temp_c": 4,
+      "q10": 2.21,
+      "kinetic_model": "tabulated_shelf_life",
+      "shelf_life_curve": [
+        {
+          "temperature_c": 0.0,
+          "shelf_life_hours": 5760.0
+        },
+        {
+          "temperature_c": 5.0,
+          "shelf_life_hours": 4104.0
+        },
+        {
+          "temperature_c": 15.0,
+          "shelf_life_hours": 1872.0
+        },
+        {
+          "temperature_c": 25.0,
+          "shelf_life_hours": 864.0
+        }
+      ]
+    },
+    {
+      "sku": "oranges",
+      "zone": "cool",
+      "pallets": 2,
+      "pallet_kg": 100,
+      "life_hours": 1344.0,
+      "reference_temp_c": 4,
+      "min_temp_c": 0,
+      "max_temp_c": 4,
+      "q10": 2.0,
+      "kinetic_model": "zou_linear_q10"
+    },
+    {
+      "sku": "strawberries",
+      "zone": "temperate",
+      "pallets": 2,
+      "pallet_kg": 100,
+      "life_hours": 432.0,
+      "reference_temp_c": 4,
+      "min_temp_c": 4,
+      "max_temp_c": 10,
+      "q10": 2.53,
+      "kinetic_model": "tabulated_shelf_life",
+      "shelf_life_curve": [
+        {
+          "temperature_c": 4.0,
+          "shelf_life_hours": 432.0
+        },
+        {
+          "temperature_c": 10.0,
+          "shelf_life_hours": 266.4
+        },
+        {
+          "temperature_c": 15.0,
+          "shelf_life_hours": 168.0
+        },
+        {
+          "temperature_c": 20.0,
+          "shelf_life_hours": 100.80000000000001
+        },
+        {
+          "temperature_c": 25.0,
+          "shelf_life_hours": 67.19999999999999
+        }
+      ]
+    }
+  ],
+  "waves": [
+    {
+      "at_minute": 0,
+      "sku": "apples",
+      "quantity_kg": 100
+    },
+    {
+      "at_minute": 30,
+      "sku": "oranges",
+      "quantity_kg": 100
+    },
+    {
+      "at_minute": 60,
+      "sku": "strawberries",
+      "quantity_kg": 100
+    }
+  ],
+  "kinetic_provenance": {
+    "target_kind": "verified_literature_shelf_life",
+    "parameters": {
+      "apples": {
+        "life_hours": 4354.376657824933,
+        "reference_temp_c": 4,
+        "q10": 2.21,
+        "kinetic_model": "tabulated_shelf_life",
+        "shelf_life_curve": [
+          {
+            "temperature_c": 0.0,
+            "shelf_life_hours": 5760.0
+          },
+          {
+            "temperature_c": 5.0,
+            "shelf_life_hours": 4104.0
+          },
+          {
+            "temperature_c": 15.0,
+            "shelf_life_hours": 1872.0
+          },
+          {
+            "temperature_c": 25.0,
+            "shelf_life_hours": 864.0
+          }
+        ]
+      },
+      "oranges": {
+        "life_hours": 1344.0,
+        "reference_temp_c": 4,
+        "q10": 2.0,
+        "kinetic_model": "zou_linear_q10"
+      },
+      "strawberries": {
+        "life_hours": 432.0,
+        "reference_temp_c": 4,
+        "q10": 2.53,
+        "kinetic_model": "tabulated_shelf_life",
+        "shelf_life_curve": [
+          {
+            "temperature_c": 4.0,
+            "shelf_life_hours": 432.0
+          },
+          {
+            "temperature_c": 10.0,
+            "shelf_life_hours": 266.4
+          },
+          {
+            "temperature_c": 15.0,
+            "shelf_life_hours": 168.0
+          },
+          {
+            "temperature_c": 20.0,
+            "shelf_life_hours": 100.80000000000001
+          },
+          {
+            "temperature_c": 25.0,
+            "shelf_life_hours": 67.19999999999999
+          }
+        ]
+      }
+    },
+    "method": "Zero-order additive quality budget with published endpoint rates or explicitly normative Q10 prior",
+    "source_file": "1-s2.0-S0260877425001128-mmc1.docx",
+    "source_sha256": "fd56de4d5ea43d55aabe331461e1d33d7b7864db8052e273919253b56387a43a",
+    "source_url": "https://doi.org/10.1016/j.jfoodeng.2025.112577",
+    "source_tables": {
+      "strawberries": "S5 observed shelf life",
+      "apples": "S8 observed b* shelf life",
+      "oranges": "S17 recommended shelf life and Q10; Annex II citrus paragraph anchors 4 C"
+    },
+    "q10_cells_without_superscript_citations": {
+      "Strawberry": [
+        {
+          "q10": 2.53,
+          "temperature_annotation": "4-15\u2103"
+        },
+        {
+          "q10": 2.13,
+          "temperature_annotation": "15-25\u2103"
+        }
+      ],
+      "Lychee": [
+        {
+          "q10": 2.78,
+          "temperature_annotation": "0\u2103\uff0c30\u2103"
+        }
+      ],
+      "Orange": [
+        {
+          "q10": 2.0,
+          "temperature_annotation": "4\u2103"
+        }
+      ],
+      "Apple": [
+        {
+          "q10": 2.21,
+          "temperature_annotation": "5-15\u2103"
+        },
+        {
+          "q10": 2.59,
+          "temperature_annotation": "15-25\u2103"
+        }
+      ]
+    },
+    "unused_printed_rate_audit": [
+      {
+        "fruit": "Strawberry",
+        "printed_k0": 9.92e-05,
+        "printed_units": "%/min",
+        "recommended_days": 14.0,
+        "fraction_budget_consumed": 1.9998719999999999,
+        "percent_budget_consumed": 0.019998719999999998
+      },
+      {
+        "fruit": "Lychee",
+        "printed_k0": 4.96e-05,
+        "printed_units": "%/min",
+        "recommended_days": 7.0,
+        "fraction_budget_consumed": 0.49996799999999997,
+        "percent_budget_consumed": 0.004999679999999999
+      },
+      {
+        "fruit": "Orange",
+        "printed_k0": 1.24e-05,
+        "printed_units": "%/min",
+        "recommended_days": 56.0,
+        "fraction_budget_consumed": 0.9999359999999999,
+        "percent_budget_consumed": 0.009999359999999999
+      },
+      {
+        "fruit": "Apple",
+        "printed_k0": 5.8e-06,
+        "printed_units": "%/min",
+        "recommended_days": 120.0,
+        "fraction_budget_consumed": 1.00224,
+        "percent_budget_consumed": 0.0100224
+      }
+    ],
+    "initial_quality_budget": 1.0,
+    "rejection_budget": 0.0,
+    "normalization": "Constant-temperature quality rate = 1 / published shelf-life hours. Interpolate reciprocal life, not life. Divide by reference rate to consume reference-life hours.",
+    "model_extensions": [
+      "Piecewise-linear zero-order rate interpolation of S5/S8 endpoints extends scalar Eq. (1). No curve extrapolation.",
+      "Orange uses normative 56-day/Q10=2 prior, not an independently measured batch calibration.",
+      "Published strawberry/apple Q10 values are retained as provenance; tabulated curves take precedence.",
+      "Strawberry zone 4-5 C is an experimental handling scenario, warmer than the S17 optimal 0-3 C range.",
+      "Three zone temperatures and controller constants are scenario choices, not inferred thermal calibration."
+    ],
+    "limitations": "Literature-conditioned quality expiry, not microbiological safety clearance or independent validation on these warehouse batches. S17 printed rates were not imported because units/normalization and strawberry/lychee lifetimes are inconsistent."
+  }
+}

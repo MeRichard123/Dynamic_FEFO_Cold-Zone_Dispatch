@@ -1,0 +1,8 @@
+{
+  "description": "Manual regression scenario: chilled-zone sensor reads 2.5 C high for 45 minutes; cool-zone cooling loses 75% capacity for 30 minutes.",
+  "disruptions": [
+    {"kind": "sensor_bias", "zone": "chilled", "at_minute": 20, "duration_minutes": 45, "value": 2.5},
+    {"kind": "cooling_failure", "zone": "cool", "at_minute": 90, "duration_minutes": 30, "value": 0.25}
+  ],
+  "generation": {"provider": "manual_fixture", "not_llm_generated": true}
+}

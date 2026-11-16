@@ -1,0 +1,53 @@
+{
+  "mode": "deterministic_planner",
+  "put_away": [
+    {
+      "pallet_id": "ST-NEW",
+      "slot": "A2",
+      "zone": "A"
+    },
+    {
+      "pallet_id": "BAN-1",
+      "slot": "B1",
+      "zone": "B"
+    }
+  ],
+  "fefo_picks": [
+    {
+      "priority": 1,
+      "order": 1,
+      "pallet_id": "ST-OLD",
+      "sku": "strawberries",
+      "slot": "A1",
+      "quantity_kg": 100,
+      "estimated_remaining_hours": 14.4
+    },
+    {
+      "priority": 2,
+      "order": 1,
+      "pallet_id": "ST-NEW",
+      "sku": "strawberries",
+      "slot": "A2",
+      "quantity_kg": 50,
+      "estimated_remaining_hours": 48.0
+    }
+  ],
+  "chiller_adjustments": [
+    {
+      "zone": "A",
+      "recommended_setpoint_c": 1,
+      "action": "inspect_chiller_and_sensor",
+      "reason": "Maintain shared product range; investigate measured temperature drift"
+    }
+  ],
+  "shortages": [],
+  "alerts": [],
+  "assumptions": [
+    "Zou Eq. (1) linear temperature factor; estimates need calibration and are not food-safety clearance.",
+    "Remaining life is at reference temperature; no historical exposure is inferred.",
+    "Orders are served in input order; FEFO applies within each order.",
+    "One slot per pallet; partial picks allowed; no relocation or energy optimization.",
+    "Chiller recommendations require operator review; no equipment is controlled."
+  ],
+  "input_mode": "structured_json"
+}

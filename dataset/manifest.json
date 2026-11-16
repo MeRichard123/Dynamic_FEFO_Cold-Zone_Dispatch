@@ -1,0 +1,38 @@
+{
+  "schema_version": "stage1-v1",
+  "records": 4000,
+  "splits": {
+    "train": 3192,
+    "validation": 380,
+    "test": 428
+  },
+  "split_unit": "base_case_id; variants never cross splits",
+  "note": "4000 unique examples, available in two formats; train/validation/test preserve source-cohort isolation.",
+  "files": {
+    "train.jsonl": "f6f74430c90e84853fcbb8fa09219a36e892e2c8077c6f5e025c552b49bbcb62",
+    "train.csv": "0addf83d2233a6f21b2b999caf7f1b3aa91450f29989cda9530e2d61da177636",
+    "validation.jsonl": "8f3cb5d1b60c8f03f22d9f5dfd68333daa27688a526cfe56cb0f675aab601a1b",
+    "validation.csv": "f5e0be820b39082739fc1fc13c292cbd01f6de9b8316bb17c64ac12ff7ea6348",
+    "test.jsonl": "28c00a4ad4ff3b125c21c6f468005cb5adf3c9b3037d6f4634d092e35c3b1f17",
+    "test.csv": "f8fb5cbc6926c85577efe278ee2389cb38831cea55918ca63be5b3fac33c918f"
+  },
+  "status": "complete",
+  "expected_records": 4000,
+  "run_fingerprint": "2f72e5c43c37c0ffe6860fccdd78192d792a53bbc9bb2253401a0cd3c0482890",
+  "formats": [
+    "jsonl",
+    "csv"
+  ],
+  "provenance": {
+    "source_cohorts": 1000,
+    "controls": 2000,
+    "procedural_cases": 1500,
+    "recorded_model_replay_cases": 500,
+    "unique_recorded_model_responses": 1
+  },
+  "validation": {
+    "replay_verified_records": 4000,
+    "tests_passed": 49
+  },
+  "checkpoints_retained": false
+}

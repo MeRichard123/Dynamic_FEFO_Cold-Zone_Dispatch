@@ -1,0 +1,12 @@
+{
+  "zones": [
+    {"id": "A", "temperature_c": 3.5, "setpoint_c": 1, "min_setpoint_c": 0, "max_setpoint_c": 5, "slots": ["A1", "A2", "A3"]},
+    {"id": "B", "temperature_c": 12, "setpoint_c": 12, "min_setpoint_c": 8, "max_setpoint_c": 15, "slots": ["B1", "B2"]}
+  ],
+  "pallets": [
+    {"id": "ST-OLD", "sku": "strawberries", "quantity_kg": 100, "remaining_life_hours": 18, "reference_temp_c": 1, "min_temp_c": 0, "max_temp_c": 5, "q10": 2, "slot": "A1"},
+    {"id": "ST-NEW", "sku": "strawberries", "quantity_kg": 120, "remaining_life_hours": 60, "reference_temp_c": 1, "min_temp_c": 0, "max_temp_c": 5, "q10": 2, "slot": null},
+    {"id": "BAN-1", "sku": "bananas", "quantity_kg": 80, "remaining_life_hours": 96, "reference_temp_c": 12, "min_temp_c": 10, "max_temp_c": 14, "q10": 2, "slot": null}
+  ],
+  "orders": [{"sku": "strawberries", "quantity_kg": 150, "min_remaining_hours": 12}]
+}
