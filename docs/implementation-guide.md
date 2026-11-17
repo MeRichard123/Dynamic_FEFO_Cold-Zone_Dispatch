@@ -54,7 +54,7 @@ four-variant suite produces 4,000 rows from 1,000 distinct eligible source waves
 The verified 100-row pilot passed, and the full 4,000-row dataset is now in
 `runs/stage1/phase1-4000-replay/`: **3,192 train / 380 validation / 428 test**.
 All rows passed replay verification, with zero failures. See
-[the scaling guide](docs/scale-to-4000.md) for preflight, fresh Ollama pools,
+[the scaling guide](./scale-to-4000.md) for preflight, fresh Ollama pools,
 launch/resume commands, timing and provenance. Forty-nine tests pass. The data
 mixes attributed model-response replays, procedural faults and controls; it is
 not 4,000 independent LLM generations.
