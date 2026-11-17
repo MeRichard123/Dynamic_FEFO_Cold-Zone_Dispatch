@@ -200,6 +200,37 @@ The fruit-image Kaggle dataset and Mendeley `czz68d9fwj` discussed in
 [the source assessment](../docs/data-sources.md) were candidate inputs, not data
 imported into these 4,000 examples.
 
+## Simulation Process 
+The main logic is in `engine.py` (`warehouse_sim/engine.py`). It uses SimPy to advance a clock through an eight-hour working period.
+
+1. Create the initial warehouse state. Load storage locations, three temperature zones, pallets, stock quantities, remaining life and scheduled orders. The standard configuration has one picker, one-minute physics updates and two minutes of handling per pallet.
+2. Process orders as they arrive. An order waits for the picker. The simulator selects an eligible pallet according to the chosen policy:
+   - FIFO: earliest assumed arrival first.
+   - FEFO: shortest estimated remaining life at the current temperature first.
+   - Optimized plan: follow the solver’s pallet priorities.
+3. Simulate each picking trip. The picker travels from dispatch to a pallet, handles it, then returns. Travel time comes from two-dimensional Manhattan distance and walking speed. Handling opens the zone door, increasing heat entering the zone. Stock is checked again at dispatch; expired or temperature-ineligible loads are rejected.
+4. Update temperature and quality. Physics advances every minute and at picking or disruption events. Pallets lose remaining life as time passes; reaching zero marks their remaining mass as expired.
+5. Record the results. Outputs include dispatched, expired, remaining and unfilled kilograms, electricity, carbon emissions and an event log. It also checks that:
+```
+   initial stock = dispatched stock + expired stock + remaining stock
+```
+### How temperature affects shelf life
+
+The thermal model in `physics.py` (`warehouse_sim/physics.py`) balances heat entering from ambient air against refrigeration:
+temperature change depends on:
+```
+  heat entering − cooling supplied
+```
+
+Cooling tries to reach the selected setpoint, subject to the equipment’s maximum capacity. Electricity is calculated from cooling delivered and its efficiency; carbon emissions use the cached grid-intensity schedule.
+
+**Shelf life is a separate calculation:**
+- Apples and strawberries: published shelf-life endpoints define temperature-dependent quality-loss rates. The code interpolates loss rate, rather than shelf life itself.
+- Oranges: a reference lifetime and a linear temperature factor determine loss.
+
+Remaining life is stored in equivalent hours at a reference temperature. Warmer conditions generally consume those hours faster. Produce is assumed to follow zone-air temperature immediately; individual fruit thermal lag is not modeled.
+
+
 ## Creation process
 
 The implementation is in [batch.py](../warehouse_sim/batch.py),
